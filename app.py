@@ -7,6 +7,8 @@ import numpy as np
 from PIL import Image
 from io import BytesIO
 import base64
+from model_loader import get_model
+
 
 app = Flask(__name__)
 
@@ -16,8 +18,7 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Load the trained model
-model = tf.keras.models.load_model('waste_classifier_model.h5')
-
+model =get_model()
 # Class labels
 class_labels = ['cardboard', 'fruitpeel', 'garden', 'paper', 'plastic', 'trash', 'vegetable']
 

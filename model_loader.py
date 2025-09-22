@@ -7,7 +7,10 @@ from tensorflow.keras.models import load_model
 
 MODEL_DIR = Path("models")
 MODEL_DIR.mkdir(exist_ok=True)
-MODEL_FILENAME = os.environ.get("MODEL_FILENAME", "model.h5")
+
+# Hardcoded filename and Google Drive file ID
+MODEL_FILENAME = "waste_classifier_model.h5"
+MODEL_FILE_ID = "1g2_CARyq04EK1TqlrpmGEfNtDedhXWoN"  # Your shared file ID
 MODEL_PATH = MODEL_DIR / MODEL_FILENAME
 
 def download_model_from_gdrive(file_id: str, dest_path: Path = MODEL_PATH):
@@ -24,10 +27,7 @@ def download_model_from_gdrive(file_id: str, dest_path: Path = MODEL_PATH):
     return str(dest_path)
 
 def get_model():
-    file_id = os.environ.get("MODEL_FILE_ID")
-    if not file_id:
-        raise RuntimeError("Environment variable MODEL_FILE_ID not set.")
-    model_file = download_model_from_gdrive(file_id)
+    model_file = download_model_from_gdrive(MODEL_FILE_ID)
     print("[model_loader] Loading model ...")
     model = load_model(model_file)
     print("[model_loader] Model loaded successfully.")
