@@ -21,7 +21,7 @@ from skimage.metrics import structural_similarity as ssim
 
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000","*"])  # Allow React app
+CORS(app, origins=["http://localhost:3000","*","https://zero2hero-pp29.vercel.app/"])  # Allow React app
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
